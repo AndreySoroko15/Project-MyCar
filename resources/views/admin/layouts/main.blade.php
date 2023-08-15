@@ -167,7 +167,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('main.index') }}" class="brand-link text-center">
+    <a href="{{ route('admin.main.index') }}" class="brand-link text-center">
       <span class="brand-text font-weight-light">MyCar</span>
     </a>
 
@@ -235,7 +235,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>
-        <a href="{{ route('main.index') }}"> MyCar </a>
+        <a href="{{ route('admin.main.index') }}"> MyCar </a>
     </strong>
   </footer>
 

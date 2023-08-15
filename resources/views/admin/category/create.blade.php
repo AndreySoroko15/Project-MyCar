@@ -11,7 +11,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">
-                <a href="{{ route('main.index') }}">Главная </a>
+                <a href="{{ route('admin.main.index') }}">Главная </a>
               </li>
             </ol>
           </div><!-- /.col -->

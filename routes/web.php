@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,18 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', App\Http\Controllers\HomePageController::class)->name('web.main.index');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', App\Http\Controllers\Main\HomeController::class)->name('main.index');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', App\Http\Controllers\HomeController::class)->name('admin.main.index');
     Route::resource('category', App\Http\Controllers\CategoryController::class);
     Route::resource('color', App\Http\Controllers\ColorController::class);
     Route::resource('brand', App\Http\Controllers\BrandController::class);
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('cars', App\Http\Controllers\CarsController::class);
 });
+
+// Route::middleware(['auth'])->group(function () {
+// });
 
 
 
