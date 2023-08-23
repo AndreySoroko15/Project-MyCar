@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Car;
 
 class User extends Authenticatable
 {
@@ -42,5 +43,9 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->role == 'admin';
+    }
+
+    public function likedCars() {
+        return $this->belongsToMany(Car::class, 'car_user_like', 'user_id', 'car_id');
     }
 }

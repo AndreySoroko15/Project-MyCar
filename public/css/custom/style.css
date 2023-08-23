@@ -24,9 +24,13 @@ a, a:hover {
 }
 
 .card-params {
-    height: 20%;
     margin-bottom: 2%;
+    height: 80px;
     margin-top: 10%;
+}
+
+.card-param > p {
+    font-size: 13px;
 }
 
 .card-param-img {

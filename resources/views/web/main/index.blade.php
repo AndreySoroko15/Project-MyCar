@@ -1,6 +1,7 @@
 @extends('web.layouts.main')
 
 @section('content')
+<script src="{{ asset('js/AddLike.js') }}"></script>
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -13,7 +14,7 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-2 justify-content-center">
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
                     
                     @foreach($products as $product)
                     <div class="col mb-5">
@@ -41,9 +42,38 @@
                                             <p>{{ $product->transmission_type }}</p>
                                         </div>
                                     </div>
-                                    <p class="fw-semibold fs-5">Год выпуска: {{ $product->year }}</p>
+
+                                    <div    class="d-flex justify-content-between pt-3" style="border-top: 1px solid rgb(180, 180, 180);">
+
+                                        <div class="brief-info" style="text-align: left;">
+                                            <p class="fw-semibold fs-6">Год выпуска: </p> 
+                                            <p class="fw-semibold fs-6">Цена: </p>
+                                        </div>
+                                        
+                                        <div class="info-values" style="text-align: right;">
+                                            <p class="fs-6"> {{ $product->year }} г.</p> 
+                                            <p class="fs-6"> {{ $product->price }} $ </p>
+                                        </div>
+
+                                        <div class="like-product d-flex align-items-center justify-content-center">
+                                            <form action="{{ route('like', $product->id) }}" method="post" class="like_form">
+                                                @csrf
+                                                <input type="hidden" name="product_id" id="like_product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="_token" id="like_token" value="{{ csrf_token() }}">
+
+                                                <button type="submit" class="border-0 bg-transparent btn-lg like_button">
+                                                @if(auth()->user()->likedCars->contains($product))
+                                                <i  class="bi bi-suit-heart like-icon" 
+                                                style="color: orange; font-size: 35px"></i>
+                                                @else
+                                                <i  class="bi bi-suit-heart like-icon" 
+                                                style="color: #b4b4b4; font-size: 35px"></i>
+                                                @endif
+                                                </button>
+                                            </form>
+                                        </div>
                                     <!-- Product price-->
-                                    <p class="fw-semibold fs-5">Цена: {{ $product->price }}$ </p>
+                                    </div>
                                 </div>
                             </div>
                             </a>

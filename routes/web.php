@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('web.main.index');
 Route::get('/car/{id}-{brand_name}-{model}-{year}', [App\Http\Controllers\Web\ProductCardController::class, 'index'])->name('cardProduct');
 
+    Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', App\Http\Controllers\HomeAdminController::class)->name('admin.main.index');
