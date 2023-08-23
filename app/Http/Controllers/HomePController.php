@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Color;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class HomePController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,10 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
+        $car = Car::all();
+        dd($car);
 
-        return view('admin.color.index', compact('colors'));
+        return view('web.main.index');
     }
 
     /**
@@ -26,7 +27,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('admin.color.create');
+        //
     }
 
     /**
@@ -37,50 +38,51 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'color_name' => 'required|string',
-        ]);
+        //
+    }
 
-        Color::create($request->all());
-
-        return redirect()->route('color.index');
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Color  $color
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit($id)
     {
-        return view('admin.color.edit', compact('color'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Color  $color
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, $id)
     {
-        $color->update($request->all());
-
-        return redirect()->route('color.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Color  $color
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy($id)
     {
-        $color->delete();
-
-        return redirect()->route('color.index');
+        //
     }
 }

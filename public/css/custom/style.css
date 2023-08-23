@@ -1,0 +1,39 @@
+.card .productCard {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* body {
+    background-color: rgb(223, 27, 27) !important;
+} */
+
+a, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.card {
+    background-color: rgba(184, 184, 184, 0.062);
+    color: rgb(228, 230, 230);
+}
+
+.card:hover {
+    border: 1px solid orange;
+    transition: 1s;
+    box-shadow: 0 0 2vh rgba(150, 150, 113, 0.616);
+}
+
+.card-params {
+    height: 20%;
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+
+.card-param-img {
+    width: 40%;
+    opacity: 0.7;
+}
+
+.product-info h1 {
+    font-size: 30px;
+}

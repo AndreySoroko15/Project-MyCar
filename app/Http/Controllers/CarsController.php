@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BodyType;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\DriveSystem;
+use App\Models\EngineType;
+use App\Models\TransmissionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,8 +28,6 @@ class CarsController extends Controller
                     -> select('cars.id', 'brand_name', 'model', 'year')
                     ->get();
         
-        // dd($cars);
-
         return view('admin.cars.index', compact('cars'));
     }
 
@@ -39,8 +41,14 @@ class CarsController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $colors = Color::all();
+        $bodyTypes = BodyType::all();
+        $driveSystems = DriveSystem::all();
+        $engineTypes = EngineType::all();
+        $transmissionTypes = TransmissionType::all();
 
-        return view('admin.cars.create', compact('brands', 'categories', 'colors'));
+        return  view('admin.cars.create', 
+                compact('brands', 'categories', 'colors', 'bodyTypes', 
+                        'driveSystems', 'engineTypes', 'transmissionTypes'));
     }
 
     /**
@@ -61,16 +69,24 @@ class CarsController extends Controller
             'year' => 'required|integer',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'count' => 'required|integer',
             'image' => 'required',
             'category_id' => 'required',
             'color_id' => 'required',
+            'body_type_id' => 'required',
+            'drive_system_id' => 'required',
+            'engine_type_id' => 'required',
+            'transmission_type_id' => 'required',
+            'car_mileage' => 'required|numeric',
         ]);
 
-        $request['image'] = Storage::disk('public')->put('/images', $request['image']);
-        // dd($request['image']);
-        Car::create($request->all());
+        $path = $request->file('image')->store('images/cars');
+        $imageName = basename($path);
+        $car = $request->all();
+        $car['image'] = $imageName;
+        // dd($car);
         
+
+        Car::create($car);
 
         return redirect()->route('cars.index');
     }
@@ -86,10 +102,16 @@ class CarsController extends Controller
         $car = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
         -> join('categories', 'cars.category_id', '=', 'categories.id')
         -> join('colors', 'cars.color_id', '=', 'colors.id')
-        ->select('cars.id', 'brand_name', 'model', 'color_name', 'year', 'category_name', 'description', 'price', 'image')
+        -> join('body_type', 'cars.body_type_id', '=', 'body_type.id')
+        -> join('drive_system', 'cars.drive_system_id', '=', 'drive_system.id')
+        -> join('engine_type', 'cars.engine_type_id', '=', 'engine_type.id')
+        -> join('transmission_type', 'cars.transmission_type_id', '=', 'transmission_type.id')
+        ->select('cars.id', 'brand_name', 'model', 'color_name', 'year', 'category_name', 'description', 'price', 'image', 'transmission_type', 'engine_type', 'drive_system', 'body_type', 'car_mileage')
+        // ->select('*')
+        ->where('cars.id', $car->id)
         ->first();
 
-        // dd($car);
+        // dd($car->id);
 
         return view('admin.cars.show', compact('car'));
     }
@@ -105,8 +127,14 @@ class CarsController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $colors = Color::all();
+        $bodyTypes = BodyType::all();
+        $driveSystems = DriveSystem::all();
+        $engineTypes = EngineType::all();
+        $transmissionTypes = TransmissionType::all();
 
-        return view('admin.cars.edit', compact('car', 'brands', 'categories', 'colors'));
+        return  view('admin.cars.edit', 
+                compact('car', 'brands', 'categories', 'colors', 'bodyTypes', 
+                        'driveSystems', 'engineTypes', 'transmissionTypes'));
     }
 
     /**
@@ -118,7 +146,35 @@ class CarsController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        $car->update($request->all());
+        // dd(isset($request['image']));
+        // $request->validate([
+        //     'brand_id' => 'required',
+        //     'model' => 'required|string',
+        //     'year' => 'required|integer',
+        //     'description' => 'required|string',
+        //     'price' => 'required|numeric',
+        //     'image' => 'required',
+        //     'category_id' => 'required',
+        //     'color_id' => 'required',
+        //     'body_type_id' => 'required',
+        //     'drive_system_id' => 'required',
+        //     'engine_type_id' => 'required',
+        //     'transmission_type_id' => 'required',
+        //     'car_mileage' => 'required|numeric',
+        // ]);
+
+        if(isset($request['image'])) {
+            Storage::delete('images/cars/' . $car->image);
+            $pathImage = $request->file('image')->store('images/cars');
+            $imageName = basename($pathImage);
+            $carRequest = $request->all();
+            $carRequest['image'] = $imageName;
+        } else {
+            $carRequest = $request->all();
+        }
+
+    // dd($request['image']);
+        $car->update($carRequest);
 
         return redirect()->route('cars.index');
     }

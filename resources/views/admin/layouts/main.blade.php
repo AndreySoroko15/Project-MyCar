@@ -127,6 +127,10 @@
         </div>
       </li>
 
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('web.main.index') }}">Сайт</a>
+      </li>
+
       @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -205,6 +209,34 @@
                 <a href="{{ route('brand.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-tags"></i>
                     <p> Марки авто </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('bodyType.index') }}" class="nav-link">
+                    <i class="nav-icon fas"></i>
+                    <p> Тип кузова </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('driveSystem.index') }}" class="nav-link">
+                    <i class="nav-icon fas"></i>
+                    <p> Тип привода </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('engineType.index') }}" class="nav-link">
+                    <i class="nav-icon fas"></i>
+                    <p> Тип двигателя </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('transmissionType.index') }}" class="nav-link">
+                    <i class="nav-icon fas"></i>
+                    <p> Тип КПП </p>
                 </a>
             </li>
 

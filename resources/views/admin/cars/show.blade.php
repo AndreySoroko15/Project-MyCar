@@ -59,6 +59,26 @@
               <td>{{ $car->category_name }}</td>
             </tr>
             <tr>
+              <td>Пробег</td>
+              <td>{{ $car->car_mileage }}</td>
+            </tr>
+            <tr>
+              <td>Тип кузова</td>
+              <td>{{ $car->body_type }}</td>
+            </tr>
+            <tr>
+              <td>Тип привода</td>
+              <td>{{ $car->drive_system }}</td>
+            </tr>
+            <tr>
+              <td>Тип двигателя</td>
+              <td>{{ $car->engine_type }}</td>
+            </tr>
+            <tr>
+              <td>Тип КПП</td>
+              <td>{{ $car->transmission_type }}</td>
+            </tr>
+            <tr>
               <td>Описание</td>
               <td>{{ $car->description }}</td>
             </tr>
@@ -67,7 +87,7 @@
               <td>{{ $car->price }}</td>
             </tr>
             <tr>
-              <td>Путь к изображению</td>
+              <td>Изображение</td>
               <td>{{ $car->image }}</td>
             </tr>
           </table>

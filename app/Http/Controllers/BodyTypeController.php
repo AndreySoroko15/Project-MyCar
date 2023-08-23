@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\BodyType;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class BodyTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('brand_name')->get(['id', 'brand_name']);
+        $bodyTypes = BodyType::all();
 
-        return view('admin.brand.index', compact('brands'));
+        return view('admin.bodyType.index', compact('bodyTypes'));
     }
 
     /**
@@ -26,33 +26,33 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.brand.create');
+        return view ('admin.bodyType.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'brand_name' => 'required|string|unique:brands,brand_name',
+            'body_type' => 'required|string',
         ]);
 
-        Brand::create($request->all());
+        BodyType::create($request->all());
 
-        return redirect()->route('brand.index');
+        return redirect()->route('bodyType.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\BodyType  $bodyType
      * @return \Illuminate\Http\Response
      */
-    // public function show(Brand $brand)
+    // public function show(BodyType $bodyType)
     // {
     //     //
     // }
@@ -60,42 +60,39 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand 
+     * @param  \App\Models\BodyType  $bodyType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(BodyType $bodyType)
     {
-        return view('admin.brand.edit', compact('brand'));
+        return view('admin.bodyType.edit', compact('bodyType'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\BodyType  $bodyType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, BodyType $bodyType)
     {
-        $request->validate([
-            'brand_name' => 'required|string|unique:brands,brand_name'.$brand->id,
-        ]);
+        $bodyType->update($request->all());
 
-        $brand->update($request->all());
-
-        return redirect()->route('brand.index');
+        return redirect()->route('bodyType.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\BodyType  $bodyType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(BodyType $bodyType)
     {
-        $brand->delete();
+        $bodyType->delete();
 
-        return redirect()->route('brand.index');
+        return redirect()->route('bodyType.index');
     }
 }

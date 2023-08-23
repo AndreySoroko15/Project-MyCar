@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="ml-1">Марка авто</h1>
+            <h1 class="ml-1">Тип двигателя</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,22 +25,24 @@
       <div class="container-fluid">
 
         <div class="pull-right mb-3">
-          <a class="btn btn-primary" href="{{ route('brand.create') }}">Добавить</a>
+          <a class="btn btn-primary" href="{{ route('engineType.create') }}">Добавить</a>
         </div>
 
         <div class="row ml-1">
           <table class="table table-bordered">
             <tr>
+              <th>ID</th>
               <th>Наименование</th>
               <th>Действие</th>
               <!-- <th width="280px">Action</th> -->
             </tr>
-            @foreach($brands as $brand)
+            @foreach($engineTypes as $engineType)
             <tr>
-                <td>{{ $brand->brand_name }}</td>
+                <td>{{ $engineType->id }}</td>
+                <td>{{ $engineType->engine_type }}</td>
                 <td>
-                  <form class="d-block" action="{{ route('brand.destroy', $brand->id) }}" method="POST">
-                    <a class="btn btn-primary mr-2" href="{{ route('brand.edit', $brand->id) }}">Редактировать</a>
+                  <form class="d-block" action="{{ route('engineType.destroy', $engineType->id) }}" method="POST">
+                    <a class="btn btn-primary mr-2" href="{{ route('engineType.edit', $engineType->id) }}">Редактировать</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Удалить</button>
