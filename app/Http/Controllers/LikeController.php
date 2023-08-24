@@ -12,6 +12,6 @@ class LikeController extends Controller
 
         auth()->user()->likedCars()->toggle($product);
 
-        return redirect()->route('web.main.index');
+        return redirect()->back();
     }
 }

@@ -16,3 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 mix.js('resources/js/AddLike.js', 'public/js');
+
+mix.js('resources/js/CountFav.js', 'public/js');

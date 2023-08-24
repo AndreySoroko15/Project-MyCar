@@ -28,7 +28,6 @@ class HomePageController extends Controller
         ->get();
 // dd($products[0]->image);
 
-
         return view('web.main.index', compact('products'));
     }
 }

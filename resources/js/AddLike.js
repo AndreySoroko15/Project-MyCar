@@ -1,23 +1,25 @@
+
 $(document).ready(function() {
     $('.like_button').on('click', function(e) {
         e.preventDefault();
         let productId = $(this).closest('.like_form').find('#like_product_id').val();
         let like_token =$("#like_token").val();
-        let like_button = $(this);
-        let like_icon = like_button.find('.like-icon')
-
-// alert(like_token);
-        // alert(productId)
+        let like_icon = $(this).find('.like-icon')
 
 
-        $.post('/' + productId + '/likes', {product_id: productId, _token: like_token}, function (response){
-            if(response.success) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://mycar/' + productId + '/likes', 
+            headers: {
+                'X-CSRF-TOKEN': like_token,
+            },
+
+            }).done(function() {
                 if(like_icon.css('color') === 'rgb(255, 165, 0)') {
                     like_icon.css('color', '#b4b4b4'); 
                 } else {
                     like_icon.css('color', 'rgb(255, 165, 0)');
                 }
-            }
-        });
+            })
     })
     })

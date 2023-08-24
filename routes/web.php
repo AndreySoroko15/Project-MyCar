@@ -19,12 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('web.main.index');
 Route::get('/car/{id}-{brand_name}-{model}-{year}', [App\Http\Controllers\Web\ProductCardController::class, 'index'])->name('cardProduct');
 
-    Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
+Route::get('/favorites', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('web.favorites');
+Route::get('/fav-cars', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars');
 
-
+Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/', App\Http\Controllers\HomeAdminController::class)->name('admin.main.index');
+    Route::get('/', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('admin.main.index');
     Route::resource('category', App\Http\Controllers\CategoryController::class);
     Route::resource('color', App\Http\Controllers\ColorController::class);
     Route::resource('brand', App\Http\Controllers\BrandController::class);

@@ -1,26 +1,12 @@
 @extends('web.layouts.main')
 
 @section('content')
-<!-- <script src="{{ asset('js/AddLike.js') }}"></script> -->
-        <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">My Car</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div>
-            </div>
-        </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
-                    
-                    @foreach($products as $product)
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
+                @foreach($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100">
-
-                            <a href="{{ route('cardProduct', ['id'=> $product->id, 'brand_name' => $product->brand_name, 'model' => $product->model, 'year' => $product->year]) }}">
                             <!-- Product image-->
                             <img class="card-img-top productCard" src="{{ asset('/storage/images/cars/' . $product->image) }}" alt="" />
                             <!-- Product details-->
@@ -79,17 +65,14 @@
                                                 @endguest
                                             </form>
                                         </div>
-                                    <!-- Product price-->
+
                                     </div>
                                 </div>
                             </div>
-                            </a>
-
                         </div>
                     </div>
-                    @endforeach
-
-                </div>
+                @endforeach
             </div>
-        </section>
-@endsection
+        </div>
+    </section>    
+@endsection 

@@ -16,6 +16,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
+        <script src="{{ asset('js/AddLike.js') }}"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
     <body>
@@ -24,11 +26,11 @@
             <div class="container px-4 px-lg-5">
             <a class="navbar-brand me-5" href="{{ route('web.main.index') }}">MyCar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
+            
                 <div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.index')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.index')}}">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">О нас</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -39,17 +41,21 @@
                             </ul>
                         </li>
                     </ul>
-
-                    <form class="d-flex ms-auto">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
-
-                    <ul class="navbar-nav">                    
-                        @guest
+                    
+                    @auth()
+                        <form class="d-flex ms-auto" action="{{ route('web.favorites') }}">
+                            <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi bi-heart me-1"></i>
+                                <span>Избранное</span>
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="fav-count">{{ auth()->user()->countFavCars() }}</span>
+                            </button>
+                        </form>
+                        
+                        <ul class="navbar-nav">                    
+                    @endauth
+                    
+                    @guest
+                        <ul class="navbar-nav ms-auto">                    
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
