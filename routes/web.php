@@ -20,7 +20,10 @@ Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name
 Route::get('/car/{id}-{brand_name}-{model}-{year}', [App\Http\Controllers\Web\ProductCardController::class, 'index'])->name('cardProduct');
 
 Route::get('/favorites', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('web.favorites');
-Route::get('/fav-cars', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars');
+
+Route::get('/fav-cars', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('fav-cars');
+
+Route::get('/fav-cars-count', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars-count');
 
 Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
 

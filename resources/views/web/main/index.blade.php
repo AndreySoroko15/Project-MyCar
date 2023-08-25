@@ -1,7 +1,6 @@
 @extends('web.layouts.main')
 
 @section('content')
-<!-- <script src="{{ asset('js/AddLike.js') }}"></script> -->
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">

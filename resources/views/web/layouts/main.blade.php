@@ -47,7 +47,8 @@
                             <button class="btn btn-outline-dark" type="submit">
                                 <i class="bi bi-heart me-1"></i>
                                 <span>Избранное</span>
-                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="fav-count">{{ auth()->user()->countFavCars() }}</span>
+                                @inject('favorite', 'App\Http\Controllers\Web\FavoritesController')
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="fav-count">{{ $favorite->countFavCars() }}</span>
                             </button>
                         </form>
                         

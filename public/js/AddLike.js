@@ -21,8 +21,19 @@ $(document).ready(function () {
       } else {
         like_icon.css('color', 'rgb(255, 165, 0)');
       }
+      updatedFavCount();
     });
   });
 });
+function updatedFavCount() {
+  $.ajax({
+    method: 'GET',
+    url: 'http://mycar/fav-cars-count',
+    success: function success(result) {
+      var parse_res = JSON.parse(result);
+      $('#fav-count').text(parse_res);
+    }
+  });
+}
 /******/ })()
 ;

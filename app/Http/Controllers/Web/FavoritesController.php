@@ -36,15 +36,16 @@ class FavoritesController extends Controller
         return view('web.favorites', compact('products'));
     }
 
-    // public function countFavCars() {
+    public function countFavCars() {
 
-    //     $count = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
-    //                 ->join('car_user_like', 'cars.id' , '=', 'car_user_like.car_id')
-    //                 -> select  ('cars.id', 'image', 'brand_name', 'model', 'price',
-    //                 'year', 'transmission_type', 'engine_type', 'body_type')
-    //                 ->where('car_user_like.user_id', auth()->user()->id)
-    //                 ->count();
+        $count = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
+                    ->join('car_user_like', 'cars.id' , '=', 'car_user_like.car_id')
+                    -> select  ('cars.id', 'image', 'brand_name', 'model', 'price',
+                    'year', 'transmission_type', 'engine_type', 'body_type')
+                    ->where('car_user_like.user_id', auth()->user()->id)
+                    ->count();
 
-    //     return $count;
+        return $count;
         // return response()->json(['count' => $count]);
     }
+}
