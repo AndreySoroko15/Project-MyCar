@@ -21,7 +21,7 @@ Route::get('/car/{id}-{brand_name}-{model}-{year}', [App\Http\Controllers\Web\Pr
 
 Route::get('/favorites', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('web.favorites');
 
-Route::get('/fav-cars', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('fav-cars');
+Route::post('/delete-fav-car-{id}', [App\Http\Controllers\Web\FavoritesController::class, 'deleteFavCar'])->name('deleteFavCar');
 
 Route::get('/fav-cars-count', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars-count');
 

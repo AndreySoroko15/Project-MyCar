@@ -3,9 +3,16 @@
     object-fit: cover;
 }
 
-/* body {
-    background-color: rgb(223, 27, 27) !important;
-} */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.content {
+    flex: 1;
+}
 
 a, a:hover {
     text-decoration: none;
@@ -40,3 +47,39 @@ a, a:hover {
 .product-info h1 {
     font-size: 30px;
 }
+
+.custom-button {
+    border: none;
+}
+
+.custom-button:hover {
+    background-color: orange;
+    transition: 1s;
+    color: black;
+}
+
+.pop-up-block {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    background-color: rgb(247, 247, 247);
+    width: 30%;
+    box-shadow: 0 0 6vh rgba(0, 0, 0, 0.274);
+    opacity: 1;
+    display: none;
+}
+
+.pop-up-block form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 10% 10% 10%;
+}
+
+.close-xmark {
+    position: absolute;
+    right: 3%;
+    top: 2%;
+}
+

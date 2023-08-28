@@ -20,7 +20,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
-    <body>
+    <body class="d-flex flex-column">
+        <div class="content flex-grow-1">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
@@ -78,15 +79,20 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Выйти') }}
                                     </a>
 
+                                    @if(auth()->user()->isAdmin())
+                                        <a class="dropdown-item" href="{{ route('admin.main.index') }}">Панель администратора </a>                    
+                                    @endif
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         @endguest
+
 
                     </ul>
                 </div>
@@ -96,7 +102,8 @@
         @yield('content')
 
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+    </div>
+        <footer class="py-5 bg-dark" style="margin-top: auto;">
             <div class="container">
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
             </div>

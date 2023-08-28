@@ -145,6 +145,8 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'bel_number' => 'Введите номер в формате +375 XX XXX-XX-XX'
     ],
 
     /*

@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductCardController extends Controller
 {
+
     public function index($id) {
 
-        $car = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
+
+        $product = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
         -> join('categories', 'cars.category_id', '=', 'categories.id')
         -> join('colors', 'cars.color_id', '=', 'colors.id')
         -> join('body_type', 'cars.body_type_id', '=', 'body_type.id')
@@ -21,9 +24,17 @@ class ProductCardController extends Controller
                     'price', 'image', 'body_type', 'drive_system', 'engine_type', 'transmission_type', 'car_mileage')
         ->where('cars.id', $id)
         ->first();
+        
+        if(auth()->check()) {
+            $user = User::select('users.id', 'name', 'phone')
+                ->where('id', auth()->user()->id)
+                ->first();
+
+            return view('web.cardProduct', compact('product', 'user'));
+        }
 
         // dd($id);
 
-        return view('web.cardProduct', compact('car'));
+        return view('web.cardProduct', compact('product'));
     }
 }

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="ml-1">Пользователи</h1>
+            <h1 class="ml-1">Заявки</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,40 +23,32 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
-        <div class="pull-right mb-3">
-          <a class="btn btn-primary" href="{{ route('user.create') }}">Добавить</a>
-        </div>
-
         <div class="row ml-1">
-          <table class="table table-bordered table-hover">
+          <table class="table table-bordered">
             <tr>
-              <th>ID</th>
               <th>Имя</th>
+              <th>Почта</th>
               <th>Номер телефона</th>
-              <th>Email</th>
+              <th>id авто</th>
               <th>Действие</th>
               <!-- <th width="280px">Action</th> -->
             </tr>
-        @foreach($users as $user)
+            @foreach($colors as $color)
             <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->phone }}</td>
-                <td>{{ $user->email }}</td>
-                <!-- <td>{{ $user->age }}</td>
-                <td>{{ $user->gender }}</td>
-                <td>{{ $user->address }}</td> -->
+                <td>{{ $call_request->name }}</td>
+                <td>{{ $call_request->email }}</td>
+                <td>{{ $call_request->phone }}</td>
+                <td>{{ $call_request->car_id }}</td>
                 <td>
-                  <form class="d-block" action="{{ route('user.destroy', $user->id) }}" method="POST">
-                    <a class="btn btn-success mr-2" href="{{ route('user.show', $user->id) }}">Показать</a>
+                  <form class="d-block" action="{{ route('color.destroy', $color->id) }}" method="POST">
+                    <a class="btn btn-primary mr-2" href="{{ route('color.edit', $color->id) }}">Редактировать</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Удалить</button>
                   </form>
                 </td>
               </tr>
-        @endforeach
+              @endforeach
             </table>
           </div>
       </div><!-- /.container-fluid -->

@@ -17,4 +17,6 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.js('resources/js/AddLike.js', 'public/js');
 
-mix.js('resources/js/CountFav.js', 'public/js');
+mix.js('resources/js/DeleteFav.js', 'public/js');
+
+mix.js('resources/js/PopUpBlock.js', 'public/js');

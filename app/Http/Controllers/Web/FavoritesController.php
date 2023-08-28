@@ -13,6 +13,7 @@ use App\Models\DriveSystem;
 use App\Models\EngineType;
 use App\Models\TransmissionType;
 use App\Models\User;
+use App\Models\Car_User_Like;
 
 class FavoritesController extends Controller
 {
@@ -47,5 +48,13 @@ class FavoritesController extends Controller
 
         return $count;
         // return response()->json(['count' => $count]);
+    }
+
+    public function deleteFavCar($id) {
+        Car_User_Like::   where('user_id', auth()->user()->id)
+                        ->where('car_id', $id)
+                        ->delete();
+
+        return redirect()->back();
     }
 }

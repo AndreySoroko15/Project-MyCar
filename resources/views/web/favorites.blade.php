@@ -1,12 +1,22 @@
 @extends('web.layouts.main')
 
 @section('content')
+<script src="{{ asset('js/DeleteFav.js') }}"></script>
+        <!-- Header--> 
+    <header class="bg-dark py-2">
+        <div class="container">
+            <div class="text-center text-white">
+                <h1 class="fw-semibold">Заинтересовавшие вас авто</h1>
+            </div>
+        </div>
+    </header>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
                 @foreach($products as $product)
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100 car_card ">
+                            <a href="{{ route('cardProduct', ['id'=> $product->id, 'brand_name' => $product->brand_name, 'model' => $product->model, 'year' => $product->year]) }}">
                             <!-- Product image-->
                             <img class="card-img-top productCard" src="{{ asset('/storage/images/cars/' . $product->image) }}" alt="" />
                             <!-- Product details-->
@@ -43,36 +53,24 @@
                                         
                                         <!-- Like -->
                                         <div class="like-product d-flex align-items-center justify-content-center">
-                                            <form action="{{ route('like', $product->id) }}" method="post" class="like_form">
+                                            <form action="{{ route('deleteFavCar', $product->id) }}" method="post" class="delete_fav_form">
                                                 @csrf
-                                                <input type="hidden" name="product_id" id="like_product_id" value="{{ $product->id }}">
-                                                <input type="hidden" name="_token" id="like_token" value="{{ csrf_token() }}">
-
                                                 @auth()
-                                                    <button type="submit" class="border-0 bg-transparent btn-lg like_button">
-                                                        @if(auth()->user()->likedCars->contains($product))
-                                                            <i  class="bi bi-suit-heart like-icon" 
-                                                                style="color: orange; font-size: 35px"></i>
-                                                        @else
-                                                            <i  class="bi bi-suit-heart like-icon" 
-                                                                style="color: #b4b4b4; font-size: 35px"></i>
-                                                        @endif
-                                                    </button>
+                                                    <input type="hidden" name="product_id" id="delete_product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="_token" id="delete_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn btn-dark custom-button" id="delete_fav_button">Удалить</button>
                                                 @endauth
-
-                                                @guest()
-                                                    <i  class="bi bi-suit-heart like-icon" style="color: #b4b4b4; font-size: 35px"></i>
-                                                @endguest
                                             </form>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-    </section>    
+    </section>
 @endsection 
