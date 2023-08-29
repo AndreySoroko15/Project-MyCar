@@ -25,6 +25,8 @@ Route::post('/delete-fav-car-{id}', [App\Http\Controllers\Web\FavoritesControlle
 
 Route::get('/fav-cars-count', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars-count');
 
+Route::resource('call-request', App\Http\Controllers\CallRequestController::class);
+
 Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {

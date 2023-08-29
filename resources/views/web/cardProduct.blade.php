@@ -4,6 +4,7 @@
 
 <!-- Product section-->
 <script src="{{ asset('js/PoPUpBlock.js') }}"></script>
+<script src="{{ asset('js/SendCallRequest.js') }}"></script>
 <section class="py-5 product-section">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
@@ -71,16 +72,32 @@
                 <i class="bi bi-x-lg"></i>
             </div>
             
-            <form action="#" method="post" class="contact-form text-center">
+            <form action="{{ route('call-request.index') }}" method="post" class="contact-form text-center form-call-request">
+                @csrf
                 <label class="fw-semibold fs-5 m-4">Получить консультацию</label>
                 
                 @if(auth()->check())
-                    <input value="{{ $user->name }}" type="text" name="user_name" class="form-control m-2" placeholder="Имя">
-                    <input value="{{ $user->phone }}" type="tel" name="phone" class="form-control m-2" placeholder="+375(XX)XXX-XX-XX">
+                    <input value="{{ $user->name }}" type="text" name="name" class="form-control m-2 @error('name') is-invalid @enderror" placeholder="Имя" required autocomplete="name">
+                    <input value="{{ $user->phone }}" type="tel" name="phone" class="form-control m-2 @error('phone') is-invalid @enderror" placeholder="+375(XX)XXX-XX-XX" required autocomplete="phone">
+                    <input value="{{ $user->email }}" type="email" name="email" class="form-control m-2 @error('email') is-invalid @enderror" placeholder="почта@mail.ru" required autocomplete="email">
                 @else
-                    <input type="text" name="user_name" class="form-control m-2" placeholder="Имя">
-                    <input type="tel" name="phone" class="form-control m-2" placeholder="+375(XX)XXX-XX-XX">
+                    <input type="text" name="name" class="form-control m-2 @error('name') is-invalid @enderror" placeholder="Имя" required autocomplete="name">
+                    <input type="tel" name="phone" class="form-control m-2 @error('phone') is-invalid @enderror" placeholder="+375(XX)XXX-XX-XX" required autocomplete="phone">
+                    <input type="email" name="email" class="form-control m-2 @error('email') is-invalid @enderror" placeholder="почта@mail.ru" required autocomplete="email">
                 @endif
+                    
+                @error('email', 'name', 'phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                    
+                <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="car_id" value="{{ $product->id }}">
+
+                <div class="form-group mt-3" >
+                    <input type="submit" class="btn custom-button btn-dark send-call-request" value="Отправить">
+                </div>
             </form>
         </div>
 

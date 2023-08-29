@@ -9,5 +9,5 @@ class CallRequest extends Model
 {
     protected $table = 'call_requests';
 
-    protected $fillable = ['id', 'name', 'email', 'phone', 'car_id'];
+    protected $guarded = false;
 }

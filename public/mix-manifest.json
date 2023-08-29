@@ -3,5 +3,6 @@
     "/js/AddLike.js": "/js/AddLike.js",
     "/js/DeleteFav.js": "/js/DeleteFav.js",
     "/js/PopUpBlock.js": "/js/PopUpBlock.js",
+    "/js/SendCallRequest.js": "/js/SendCallRequest.js",
     "/css/app.css": "/css/app.css"
 }

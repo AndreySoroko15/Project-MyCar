@@ -7,6 +7,21 @@ use Illuminate\Http\Request;
 
 class CallRequestController extends Controller
 {
+
+    public function store(Request $request) {
+
+        // dd($request);
+
+        $request->validate([
+            'email' => 'required',
+            'phone' => 'required',
+            'name' => 'required',
+        ]);
+
+        CallRequest::create($request->all());
+
+        return redirect()->back();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +31,7 @@ class CallRequestController extends Controller
     {
         $call_request = CallRequest::all();
 
-        return view('admin.callRequest.index', compact('call_request'));
+        return view('admin.callRequest.index', compact('call_requests'));
     }
 
     /**
