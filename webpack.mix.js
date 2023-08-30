@@ -22,3 +22,5 @@ mix.js('resources/js/DeleteFav.js', 'public/js');
 mix.js('resources/js/PopUpBlock.js', 'public/js');
 
 mix.js('resources/js/SendCallRequest.js', 'public/js');
+
+mix.js('resources/js/deleteButtonAsync.js', 'public/js');

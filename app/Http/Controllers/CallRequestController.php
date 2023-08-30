@@ -10,14 +10,6 @@ class CallRequestController extends Controller
 
     public function store(Request $request) {
 
-        // dd($request);
-
-        $request->validate([
-            'email' => 'required',
-            'phone' => 'required',
-            'name' => 'required',
-        ]);
-
         CallRequest::create($request->all());
 
         return redirect()->back();
@@ -29,7 +21,9 @@ class CallRequestController extends Controller
      */
     public function index()
     {
-        $call_request = CallRequest::all();
+        $call_requests = CallRequest::all();
+
+        // dd(url()->current());
 
         return view('admin.callRequest.index', compact('call_requests'));
     }
@@ -42,6 +36,9 @@ class CallRequestController extends Controller
      */
     public function destroy(CallRequest $callRequest)
     {
-        //
+        // dd(url()->current());
+        $callRequest->delete();
+
+        return redirect()->back();
     }
 }

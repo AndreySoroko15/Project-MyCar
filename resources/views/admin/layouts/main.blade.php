@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -185,7 +187,7 @@
                with font-awesome or any other icon font library -->
             
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('call-request.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-shopping-bag"></i>
                     <p> Заявки </p>
                 </a>

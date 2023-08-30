@@ -26,6 +26,7 @@ class CarsController extends Controller
                     -> join('categories', 'cars.category_id', '=', 'categories.id')
                     -> join('colors', 'cars.color_id', '=', 'colors.id')
                     -> select('cars.id', 'brand_name', 'model', 'year')
+                    ->orderBy('cars.id', 'desc')
                     ->get();
         
         return view('admin.cars.index', compact('cars'));
@@ -38,9 +39,9 @@ class CarsController extends Controller
      */
     public function create()
     {
-        $brands = Brand::all();
+        $brands = Brand::orderBy('brand_name', 'asc')->get();
         $categories = Category::all();
-        $colors = Color::all();
+        $colors = Color::orderBy('color_name', 'asc')->get();
         $bodyTypes = BodyType::all();
         $driveSystems = DriveSystem::all();
         $engineTypes = EngineType::all();

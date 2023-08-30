@@ -114,7 +114,7 @@
 
             <div class="form-group">
               <div class="input-group custom-file"">
-                  <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
+                  <input name="image" type="file" class="custom-file-input form-control-file" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Выберете изображение</label>
               </div>
             </div>

@@ -12,7 +12,7 @@
     </header>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start">
                 @foreach($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100 car_card ">
@@ -58,7 +58,7 @@
                                                 @auth()
                                                     <input type="hidden" name="product_id" id="delete_product_id" value="{{ $product->id }}">
                                                     <input type="hidden" name="_token" id="delete_token" value="{{ csrf_token() }}">
-                                                    <button type="submit" class="btn btn-dark custom-button" id="delete_fav_button">Удалить</button>
+                                                    <button type="submit" class="btn btn-dark custom-button delete_fav_button">Удалить</button>
                                                 @endauth
                                             </form>
                                         </div>

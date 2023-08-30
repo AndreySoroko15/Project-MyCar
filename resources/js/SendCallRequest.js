@@ -1,9 +1,9 @@
-
 $(document).ready(function () {
-    $('.form-call-request').submit(function(e) {
-        e.preventDefault();
 
-        let _token =$("#_token").val();
+    $('.form-call-request').submit(function(e) {
+        // e.preventDefault();
+
+        let _token = $("#_token").val();
         let formData = {
             name: $('input[name=name]').val(),
             email: $('input[name=email]').val(),
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: 'POST', 
-            url: 'http://mycar/call-request', 
+            url: 'http://mycar/call-request-form', 
             headers: {
                 'X-CSRF-TOKEN': _token
             },
@@ -22,10 +22,8 @@ $(document).ready(function () {
                 $('.pop-up-block').fadeOut();
                 $('.product-section').animate({ opacity: 1 }, 500);
             },
-            error: {
-                
-            }
-
         })
     })
+
+    
   })

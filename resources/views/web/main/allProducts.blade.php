@@ -2,46 +2,32 @@
 
 @section('content')
     <!-- Header-->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-
-        <div class="carousel-inner">
-            <div class="carousel-item active item-1" data-bs-interval="5000">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-            </div>
-
-            <div class="carousel-item item-2" data-bs-interval="5000">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-            </div>
-
-            <div class="carousel-item item-3">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
+    <header class="bg-dark py-2">
+        <div class="container">
+            <div class="text-center text-white">
+                <h1 class="fw-semibold">Каталог автомобилей</h1>
             </div>
         </div>
+    </header>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <!-- Search -->
+    <div class="container px-4 px-lg-5 mt-5" >
+    <form method="GET" action="{{ route('search') }}">
+        <div class="d-flex justify-content-end">
+            <div class="form-group col-md-5">
+                <input type="text" class="form-control" id="search" name="search" placeholder="Search...">
+            </div>
+            <div class="form-group col-md-1">
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </div>
+        </div>
+    </form>
     </div>
 
         <!-- Section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-2">
-            <h1 class="mb-4 fs-2 fw-bold">Новые поступления</h1>
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-center">
+    <section class="py-4">
+        <div class="container px-4 px-lg-5 mt-1">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start">
                     
             @foreach($products as $product)
                 <div class="col mb-5">

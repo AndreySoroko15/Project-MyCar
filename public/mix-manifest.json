@@ -4,5 +4,6 @@
     "/js/DeleteFav.js": "/js/DeleteFav.js",
     "/js/PopUpBlock.js": "/js/PopUpBlock.js",
     "/js/SendCallRequest.js": "/js/SendCallRequest.js",
+    "/js/deleteButtonAsync.js": "/js/deleteButtonAsync.js",
     "/css/app.css": "/css/app.css"
 }

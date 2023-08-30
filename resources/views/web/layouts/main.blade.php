@@ -13,6 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/custom/style.css') }}" rel="stylesheet" />
+
         <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
@@ -31,16 +32,8 @@
                 <div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.index')}}">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.allCars')}}">Автомобили</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">О нас</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
                     </ul>
                     
                     @auth()

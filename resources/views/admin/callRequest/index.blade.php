@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
+<script src="{{ asset('js/deleteButtonAsync.js') }}" defer></script>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -35,18 +36,19 @@
               <!-- <th width="280px">Action</th> -->
             </tr>
             @foreach($call_requests as $call_request)
-            <tr>
+            <tr class="cortege">
                 <td>{{ $call_request->name }}</td>
                 <td>{{ $call_request->email }}</td>
                 <td>{{ $call_request->phone }}</td>
                 <td>{{ $call_request->car_id }}</td>
                 <td>{{ $call_request->created_at }}</td>
                 <td>
-                  <form class="d-block" action="{{ route('color.destroy', $color->id) }}" method="POST">
-                    <a class="btn btn-primary mr-2" href="{{ route('color.edit', $color->id) }}">Редактировать</a>
+                  <form class="d-block form-delete" action="{{ route('call-request.destroy', $call_request->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="call_request_id" id="call_request_id" value="{{ $call_request->id }}">
+                    <button type="submit" class="btn btn-danger delete_button">Удалить</button>
                   </form>
                 </td>
               </tr>

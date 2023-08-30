@@ -16,16 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('web.main.index');
+Route::get('/', [App\Http\Controllers\Web\ProductController::class, 'index'])->name('web.main.index');
+Route::get('/cars', [App\Http\Controllers\Web\ProductController::class, 'allCars'])->name('web.main.allCars');
+Route::get('/search', [App\Http\Controllers\Web\ProductController::class, 'search'])->name('search');
+
 Route::get('/car/{id}-{brand_name}-{model}-{year}', [App\Http\Controllers\Web\ProductCardController::class, 'index'])->name('cardProduct');
 
 Route::get('/favorites', [App\Http\Controllers\Web\FavoritesController::class, 'index'])->name('web.favorites');
-
 Route::post('/delete-fav-car-{id}', [App\Http\Controllers\Web\FavoritesController::class, 'deleteFavCar'])->name('deleteFavCar');
-
 Route::get('/fav-cars-count', [App\Http\Controllers\Web\FavoritesController::class, 'countFavCars'])->name('fav-cars-count');
 
-Route::resource('call-request', App\Http\Controllers\CallRequestController::class);
+Route::resource('call-request-form', App\Http\Controllers\CallRequestController::class);
 
 Route::post('/{product}/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('like');
 
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('driveSystem', App\Http\Controllers\DriveSystemController::class);
     Route::resource('engineType', App\Http\Controllers\EngineTypeController::class);
     Route::resource('transmissionType', App\Http\Controllers\TransmissionTypeController::class);
+    Route::resource('call-request', App\Http\Controllers\CallRequestController::class);
 });
 
 // Route::middleware(['auth'])->group(function () {
