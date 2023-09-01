@@ -106,4 +106,10 @@ class UserController extends Controller
 
         return redirect()->route('user.index');
     }
+
+    public function countUsers() {
+        $count = User::all()->count();
+
+        return $count;
+    }
 }

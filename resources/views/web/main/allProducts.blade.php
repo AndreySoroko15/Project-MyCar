@@ -12,13 +12,14 @@
 
     <!-- Search -->
     <div class="container px-4 px-lg-5 mt-5" >
-    <form method="GET" action="{{ route('search') }}">
+    <form method="GET" action="{{ route('search') }}" class="search-form">
+        @csrf
         <div class="d-flex justify-content-end">
             <div class="form-group col-md-5">
                 <input type="text" class="form-control" id="search" name="search" placeholder="Search...">
             </div>
             <div class="form-group col-md-1">
-                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                <button type="submit" class="btn btn-dark btn-block">Search</button>
             </div>
         </div>
     </form>
@@ -27,8 +28,7 @@
         <!-- Section-->
     <section class="py-4">
         <div class="container px-4 px-lg-5 mt-1">
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start">
-                    
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start" id="cars-list">        
             @foreach($products as $product)
                 <div class="col mb-5">
                     <div class="card h-100">
@@ -96,11 +96,11 @@
                     </div>
                 </div>
             @endforeach
-
+            </div>
+            
             <div class="d-flex justify-content-center">
                 {{ $products->links() }}
             </div>
-                </div>
         </div>
     </section>
 

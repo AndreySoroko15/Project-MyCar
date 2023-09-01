@@ -41,4 +41,10 @@ class CallRequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function countCallRequests() {
+        $count = CallRequest::all()->count();
+
+        return $count;
+    }
 }

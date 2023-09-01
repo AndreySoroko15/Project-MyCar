@@ -123,3 +123,60 @@ a, a:hover {
 .item-3 {
     background-image: url(../../imgs/slider/4311cd9449c2c1a68b98bb12aa08ae02.jpeg);
 }
+
+.guest-like-block {
+    position: fixed;
+    transform: translate(-50%, -50%); 
+    left: 50%; 
+    top: 50%; 
+    background-color: rgb(247, 247, 247);
+    width: 30%;
+    box-shadow: 0 0 6vh rgba(0, 0, 0, 0.274);
+    opacity: 1;
+    display: none;
+}
+
+@media (max-width: 424px) {
+    .guest-like-block {
+        width: 95%;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 530px) {
+    .guest-like-block {
+        width: 80%;
+    }
+}
+
+@media (min-width: 531px) and (max-width: 606px) {
+    .guest-like-block {
+        width: 70%;
+    }
+}
+
+@media (min-width: 607px) and (max-width: 707px) {
+    .guest-like-block {
+        width: 60%;
+    }
+}
+
+@media (min-width: 708px) and (max-width: 900px) {
+    .guest-like-block {
+        width: 45%;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1052px) {
+    .guest-like-block {
+        width: 40%;
+    }
+}
+
+.guest-like-block a {
+    color: rgb(231, 150, 0);
+}
+
+.guest-like-block a:hover{
+    color: rgba(231, 150, 0, 0.596);
+    transition: 0.4s;
+}

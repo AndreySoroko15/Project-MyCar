@@ -192,4 +192,10 @@ class CarsController extends Controller
 
         return redirect()->route('cars.index');
     }
+
+    public function countCars(){
+        $count = Car::all()->count();
+
+        return $count;
+    }
 }

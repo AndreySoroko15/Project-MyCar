@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    
     $('#pop-up-form-button').on('click', function() {
         $('.pop-up-block').fadeIn();
         $('.product-section').animate({ opacity: 0.4 }, 500);

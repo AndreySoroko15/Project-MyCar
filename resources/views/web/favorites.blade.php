@@ -12,7 +12,7 @@
     </header>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 justify-content-start" id="cars-list">
                 @foreach($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100 car_card ">

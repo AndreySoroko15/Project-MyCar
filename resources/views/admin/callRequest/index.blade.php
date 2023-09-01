@@ -40,7 +40,7 @@
                 <td>{{ $call_request->name }}</td>
                 <td>{{ $call_request->email }}</td>
                 <td>{{ $call_request->phone }}</td>
-                <td>{{ $call_request->car_id }}</td>
+                <td><a href="{{ route('cars.show', $call_request->car_id) }}">{{ $call_request->car_id }}</a></td>
                 <td>{{ $call_request->created_at }}</td>
                 <td>
                   <form class="d-block form-delete" action="{{ route('call-request.destroy', $call_request->id) }}" method="POST">

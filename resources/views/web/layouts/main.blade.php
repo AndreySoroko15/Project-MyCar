@@ -18,6 +18,7 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
         <script src="{{ asset('js/AddLike.js') }}"></script>
+        <script src="{{ asset('js/GuestLike.js') }}"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
@@ -32,8 +33,16 @@
                 <div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.index')}}">Главная</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.allCars')}}">Автомобили</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('web.main.allCars')}}">Автомобили</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">О нас</a></li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="https://github.com/AndreySoroko15" class="nav-link active">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </li>
                     </ul>
                     
                     @auth()

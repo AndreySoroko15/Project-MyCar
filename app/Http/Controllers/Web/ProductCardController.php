@@ -26,7 +26,7 @@ class ProductCardController extends Controller
         ->first();
         
         if(auth()->check()) {
-            $user = User::select('users.id', 'name', 'phone')
+            $user = User::select('users.id', 'name', 'phone','email')
                 ->where('id', auth()->user()->id)
                 ->first();
 

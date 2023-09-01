@@ -75,6 +75,8 @@ class ProductController extends Controller
                         ->orderBy('cars.created_at', 'desc')
                         ->paginate(6);
 
+        // return response()->json(['products' => $products]);
+
 return view('web.main.allProducts', compact('products'));
     }
 }
